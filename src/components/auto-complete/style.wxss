@@ -1,0 +1,34 @@
+.snake-auto-complete {
+  display: inline-block;
+  line-height: 40px;
+}
+
+.snake-auto-complete .snake-auto-search {
+  line-height: 1.5;
+}
+
+.snake-auto-complete .snake-auto-search input {
+  box-sizing: border;
+  color: rgba(0, 0, 0, 0.65);
+  padding: 4px 11px;
+  display: inline-block;
+  background: #fff;
+  line-height: 1.5;
+  font-size: 14px;
+  border-radius: 0;
+  border: 1px solid #d9d9d9;
+  transition: all 0.3s;
+}
+
+.snake-auto-complete .snake-auto-search input::-webkit-input-placeholder {
+  color: #b1b1b1;
+}
+
+.snake-auto-complete .snake-auto-search input:hover {
+  border: 1px solid #40a9ff;
+}
+
+.snake-auto-complete .snake-auto-search input:focus {
+  border: 1px solid #40a9ff;
+  outline: 2px solid #c4e4ff;
+}
