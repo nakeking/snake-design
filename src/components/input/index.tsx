@@ -2,6 +2,7 @@ import { placeholder } from "@babel/types";
 import classNames from "classnames";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Icon } from "..";
+import { useUpdateLayoutEffect } from "../_util/hooks/useUpdateLayoutEffect";
 
 type inputSize = 'lg' | 'sm' 
 type typeEnum = 'text' | 'password'
@@ -9,6 +10,7 @@ export interface inputBaseProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix' | 'type'>{
   size?: inputSize
   type?: typeEnum
+  style?: React.CSSProperties
   onPressEnter?: React.KeyboardEvent<HTMLInputElement>
   addonBefore?: React.ReactNode
   addonAfter?: React.ReactNode
@@ -27,6 +29,7 @@ const Input: React.FC<inputBaseProps> = (props) => {
     addonAfter,
     value,
     allowClear,
+    style: _style,
     ...inputProps
   } = props;
 
@@ -39,10 +42,11 @@ const Input: React.FC<inputBaseProps> = (props) => {
   useEffect(() => {
     setValue(value)
   }, [value])
-  useEffect(() => {
+
+  useUpdateLayoutEffect(() => {
     inputRef?.current?.focus()
   }, [_type])
-
+  
   const classes = classNames('snake-input-wrapper', {
     'snake-input-focused': _focused,
     'snake-input-affix-wrapper-disabled': inputProps.disabled
@@ -91,6 +95,7 @@ const Input: React.FC<inputBaseProps> = (props) => {
       {addonBefore}
       {prefix}
       <input 
+        style={_style}
         ref={inputRef} 
         className={inputClassNames}
         {...inputProps}

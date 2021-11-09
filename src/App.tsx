@@ -95,7 +95,13 @@ function App() {
         <Divider message="select"></Divider>
         <Row gutter={24}>
           <Col span={4}>
-            <Select placeholder="请选择" style={{width: '100px'}}></Select>
+            <Select 
+              placeholder="请选择" 
+              style={{width: '100px'}} 
+              options={[{
+                label: '1',
+                value: '123'
+              }]}></Select>
           </Col>
           <Col span={4}>
             <Select 

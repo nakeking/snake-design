@@ -1,11 +1,13 @@
 import classNames from 'classnames';
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import ReactDOM from "react-dom";
 import { useUpdateLayoutEffect } from '../_util/hooks/useUpdateLayoutEffect';
 
 import Input from '../input'
 import Option, { optionItem } from './option'
 import { Icon } from '..'
+import { nanoid } from 'nanoid';
+import { getElementStyle } from '../_util/util';
 
 type modeType = 'multiple'
 
@@ -17,7 +19,7 @@ interface selectProps {
   loading?: boolean
   mode?: modeType
   filterOption?: () => void
-  options?: []
+  options?: optionItem[]
   children?: React.ReactNode
   placeholder?: string
 }
@@ -34,33 +36,77 @@ const Select = (props: selectProps) => {
     options
   } = props
 
+  const onlyId = nanoid();
+  let [hidden, setHidden] = useState(true);
+  let [style, setStyle] = useState<React.CSSProperties>({});
+  let [option_data, setOptions] = useState<optionItem[]>(options || []);
+  const SelectRef = useRef<HTMLDivElement>(null)
+
   const classes = classNames('snake-select-wrap', {
+    'snake-select-focused': !hidden,
     'snake-select-multiple': mode === 'multiple',
     'snake-select-affix-wrapper-disabled': disabled
   })
 
+  useEffect(() => {
+    setOptions(options || []);
+  }, [options])
+
+  useEffect(() => {
+    const select_offset_data = getElementStyle(SelectRef);
+    setStyle(select_offset_data);
+
+  }, [SelectRef])
+
+  const handleClick = (evt: React.MouseEvent) => {
+    setHidden(!hidden);
+  }
+
+  const handleBlur = (evt: React.FocusEvent) => {
+    setHidden(true)
+  }
+
   return (
-    <div className={classes} style={_style}>
+    <div 
+      className={classes} 
+      style={_style} 
+      ref={SelectRef} 
+      tabIndex={0}
+      onClick={handleClick}  
+      onBlur={handleBlur}>
       <div className="snake-select-selector">
-        {showSearch ? <div className="snake-select-selection-search">
-          <Input />
-        </div> : null}
-        {placeholder ? <div className="snake-select-selection-placeholder">{placeholder}</div> : null}
+        <div className="snake-select-selection-search">
+          <Input style={{
+            opacity: showSearch ? 1 : 0
+          }} disabled={disabled} />
+        </div>
         <div className="snake-select-selection-item"></div>
-        {loading ? <Icon type="loading" /> : <Icon type="down" />}
+        {placeholder ? <div className="snake-select-selection-placeholder">{placeholder}</div> : null}
+        {loading ? <Icon className={'snake-select-arrow'} type="loading" /> : <Icon type="down" />}
       </div>
+      {options && RenderSelect({
+        id: onlyId,
+        hidden,
+        options: option_data,
+        style
+      })}
     </div>
   )
 }
 
-interface renderSelectProps {
+class renderSelectProps {
   inputRef?: React.MutableRefObject<HTMLInputElement | null>
-  id: string
-  options?: optionItem[]
+  id?: string
+  options: optionItem[]
   hidden: true | false
   style?: React.CSSProperties
   onSelect?: (data?: optionItem) => void
   handleSelect?: (value: string) => void
+
+  constructor() {
+    this.options = []
+    this.hidden = false
+  }
 }
 
 export const RenderSelect = (props: renderSelectProps) => {
@@ -128,7 +174,7 @@ export const RenderSelect = (props: renderSelectProps) => {
     <div 
       style={{position: 'absolute', width: '100%', left: 0, top: 0}} >
       <div>
-        <div 
+        {options.length ? <div 
           ref={optionRef}
           className={classes} 
           style={_style} id={id} >
@@ -143,8 +189,8 @@ export const RenderSelect = (props: renderSelectProps) => {
               </Option>
             );
           })}
-        </div>
-      </div>
+        </div> : null}
+      </div> 
     </div>
     ,
     document.body

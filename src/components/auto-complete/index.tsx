@@ -35,7 +35,7 @@ const AutoComplete = ({ ...props }: AutoCompleteProps) => {
   let [hidden, setHidden] = useState(true);
   let [onlyId] = useState(nanoid());
   let [inputValue, setValue] = useState('');
-  let [option_data, setOptions] = useState(options || []);
+  let [option_data, setOptions] = useState<optionItem[]>(options);
   let [style, setStyle] = useState<React.CSSProperties>({});
 
   const AutoCompleteRef = useRef<HTMLDivElement>(null)
@@ -83,9 +83,7 @@ const AutoComplete = ({ ...props }: AutoCompleteProps) => {
 
   const handleSelect = (value: string) => {
     setValue(value)
-  } 
-
-  console.log(option_data);
+  }
 
   return (
     <div 

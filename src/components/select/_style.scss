@@ -2,7 +2,6 @@
   position: relative;
   padding: 0;
   display: inline-block;
-  cursor: pointer;
   font-size: 14px;
   line-height: 1.5715;
   list-style: none;
@@ -12,8 +11,11 @@
     padding: 0 11px;
     display: flex;
     align-items: center;
+    cursor: pointer;
   }
   .snake-select-selection-item{
+    position: relative;
+    user-select: none;
     flex: 1;
     overflow: hidden;
     font-weight: 400;
@@ -22,7 +24,22 @@
 
     line-height: 30px;
     transition: all 0.3s;
-    padding: 0
+    padding-right: 18px;
+    height: 100%;
+  }
+  .snake-select-selection-search{
+    position:absolute;
+    top: 0;
+    bottom: 0;
+    right: 11px;
+    left: 11px;
+    text-align: left;
+    .snake-input-wrapper{
+      border: none;
+      padding: 0;
+      height: 100%;
+      background: none;
+    }
   }
   .snake-select-selection-placeholder{
     flex: 1;
@@ -40,6 +57,18 @@
     transition: all 0.3s;
     text-align: left;
   }
+  .anticon{
+    position: absolute;
+    top: 50%;
+    right: 11px;
+    margin-top: -10px;
+    line-height: 1;
+    text-align: center;
+  }
+}
+.snake-select-wrap:not(.snake-select-affix-wrapper-disabled).snake-select-focused{
+  border: 1px solid $blue;
+  outline: 2px solid #c4e4ff
 }
 
 .snake-search-select{
