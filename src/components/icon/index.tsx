@@ -18,6 +18,7 @@ const Icon:React.FC<IconProps> = (props) => {
     spin,
     style,
     fill,
+    className,
     onClick,
     children
   } = props
@@ -25,7 +26,7 @@ const Icon:React.FC<IconProps> = (props) => {
   const classes = classNames({
     anticon: true,
     [`anticon-${type}`]: true
-  })
+  }, className)
 
   const iconClassName = classNames({
     'anticon-spin': !!spin || type === 'loading',
@@ -39,7 +40,9 @@ const Icon:React.FC<IconProps> = (props) => {
     <span 
       className={classes} 
       style={style} onClick={handleClick}>
-      <svg className={iconClassName} {...omit(props, ['style','type', 'spin', 'children'])}>
+      <svg 
+        className={iconClassName} 
+        {...omit(props, [ 'className', 'style','type', 'spin', 'children'])}>
         <use xlinkHref={`#snake-${type}`}></use>
       </svg>
     </span>

@@ -7,7 +7,8 @@ import {
   Icon,
   Row,
   Col,
-  Select
+  Select,
+  Tag
 } from "./components";
 
 const { Option } = Select
@@ -108,6 +109,31 @@ function App() {
               disabled={true}
               placeholder="请选择" 
               style={{width: '150px'}}></Select>
+          </Col>
+          <Col span={4}>
+            <Select 
+              loading={true}
+              placeholder="请选择" 
+              style={{width: '150px'}}></Select>
+          </Col>
+          <Col span={4}>
+            <Select 
+              mode={'multiple'}
+              placeholder="请选择" 
+              style={{width: '150px'}}></Select>
+          </Col>
+        </Row>
+      </div>
+
+      <div className="base-info">
+        <Divider message="Tag"></Divider>
+        <Row>
+          <Col span={8}>
+            <Tag>tag base</Tag>
+            <Tag color={'magenta'}>magenta</Tag>
+            <Tag color={'red'}>red</Tag>
+            <Tag color={'#2db7f5'}>#2db7f5</Tag>
+            <Tag closable={true}>tag close</Tag>
           </Col>
         </Row>
         

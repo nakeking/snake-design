@@ -166,6 +166,9 @@ $enable-pointer-cursor-for-buttons:           true !default;
 $border-width:                1px !default;
 $border-color:                $gray-300 !default;
 
+$border-blue:                 1px solid $blue;
+$border-ouline:               2px solid #c4e4ff;
+
 $border-radius:               .25rem !default;
 $border-radius-lg:            .3rem !default;
 $border-radius-sm:            .2rem !default;

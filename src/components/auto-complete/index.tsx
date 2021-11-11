@@ -12,7 +12,7 @@ type optionItem = {label: string, value: string};
 
 export interface AutoCompleteProps extends Omit<inputBaseProps, 'onSelect'> {
   allowClear?: boolean
-  options: optionItem[]
+  options?: optionItem[]
   onSelect?: (data?: optionItem) => void
   onSearch?: (value: string) => void
   value?: string
@@ -35,7 +35,7 @@ const AutoComplete = ({ ...props }: AutoCompleteProps) => {
   let [hidden, setHidden] = useState(true);
   let [onlyId] = useState(nanoid());
   let [inputValue, setValue] = useState('');
-  let [option_data, setOptions] = useState<optionItem[]>(options);
+  let [option_data, setOptions] = useState<optionItem[] | undefined>(options);
   let [style, setStyle] = useState<React.CSSProperties>({});
 
   const AutoCompleteRef = useRef<HTMLDivElement>(null)

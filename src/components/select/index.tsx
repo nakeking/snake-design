@@ -5,7 +5,9 @@ import { useUpdateLayoutEffect } from '../_util/hooks/useUpdateLayoutEffect';
 
 import Input from '../input'
 import Option, { optionItem } from './option'
+import Tag from '../tag'
 import { Icon } from '..'
+
 import { nanoid } from 'nanoid';
 import { getElementStyle } from '../_util/util';
 
@@ -40,6 +42,7 @@ const Select = (props: selectProps) => {
   let [hidden, setHidden] = useState(true);
   let [style, setStyle] = useState<React.CSSProperties>({});
   let [option_data, setOptions] = useState<optionItem[]>(options || []);
+  let [value, setValue] = useState<string[] | string>('')
   const SelectRef = useRef<HTMLDivElement>(null)
 
   const classes = classNames('snake-select-wrap', {
@@ -66,6 +69,10 @@ const Select = (props: selectProps) => {
     setHidden(true)
   }
 
+  const handleSelect = (data: string) => {
+    mode ? setValue([...value as string[], data]) : setValue(data)
+  }
+
   return (
     <div 
       className={classes} 
@@ -80,15 +87,18 @@ const Select = (props: selectProps) => {
             opacity: showSearch ? 1 : 0
           }} disabled={disabled} />
         </div>
-        <div className="snake-select-selection-item"></div>
-        {placeholder ? <div className="snake-select-selection-placeholder">{placeholder}</div> : null}
-        {loading ? <Icon className={'snake-select-arrow'} type="loading" /> : <Icon type="down" />}
+        <div className="snake-select-selection-item">
+          {mode ? <div className=""></div> : value}
+        </div>
+        {placeholder && !value ? <div className="snake-select-selection-placeholder">{placeholder}</div> : null}
+        {loading ? <Icon type="loading" /> : <Icon type="down" />}
       </div>
       {options && RenderSelect({
         id: onlyId,
         hidden,
         options: option_data,
-        style
+        style,
+        handleSelect
       })}
     </div>
   )

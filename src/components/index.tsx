@@ -10,3 +10,5 @@ export { default as Icon } from './icon'
 export { Row, Col } from './grid'
 
 export { default as Select } from './select'
+
+export { default as Tag } from './tag'

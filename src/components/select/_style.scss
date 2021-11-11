@@ -21,8 +21,9 @@
     font-weight: 400;
     white-space: nowrap;
     text-overflow: ellipsis;
+    text-align: left;
 
-    line-height: 30px;
+    line-height: 32px;
     transition: all 0.3s;
     padding-right: 18px;
     height: 100%;
@@ -44,7 +45,7 @@
   .snake-select-selection-placeholder{
     flex: 1;
     overflow: hidden;
-    color: #bfbfbf;
+    color: $gray-400;
     white-space: nowrap;
     text-overflow: ellipsis;
     pointer-events: none;
@@ -67,8 +68,8 @@
   }
 }
 .snake-select-wrap:not(.snake-select-affix-wrapper-disabled).snake-select-focused{
-  border: 1px solid $blue;
-  outline: 2px solid #c4e4ff
+  border: $border-blue;
+  outline: $border-ouline
 }
 
 .snake-search-select{
@@ -78,9 +79,9 @@
   line-height: 1.5715;
   list-style: none;
   box-sizing: border-box;
-  background: #fff;
+  background: $white;
   border-radius: 2px;
-  box-shadow: 0 3px 6px -4px #0000001f, 0 6px 16px #00000014, 0 9px 28px 8px #0000000d;
+  box-shadow: $box-shadow;
   outline: none;
   font-size: 14px;
   color: #000000d9;
@@ -88,11 +89,11 @@
   .select-item{
     padding: 5px 12px;
     line-height: 22px;
-    background: #fff;
+    background: $white;
     transition: background .3s ease;
     cursor: pointer;
     &:hover{
-      background: #e6f7ff;
+      background: $gray-100;
     }
     &.active{
       background: #c5e5ff;
