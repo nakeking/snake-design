@@ -1,0 +1,128 @@
+.snake-row{
+  position: relative;
+  display: block;
+  zoom: 1;
+  box-sizing: border-box;
+  &::before,&::after{
+    display: table;
+    content: '';
+    clear: both;
+  }
+}
+.snake-row.snake-row-gutter{
+  .snake-col{
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+.snake-col{
+  display: block;
+  min-height: 30px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.snake-col-1, .snake-col-2, .snake-col-3, .snake-col-4, .snake-col-5, .snake-col-6, .snake-col-7, .snake-col-8, .snake-col-9, .snake-col-10, .snake-col-11, .snake-col-12, .snake-col-13, .snake-col-14, .snake-col-15, .snake-col-16, .snake-col-17, .snake-col-18, .snake-col-19, .snake-col-20, .snake-col-21, .snake-col-22, .snake-col-23, .snake-col-24{
+  flex: 0 0 auto;
+  float: left;
+}
+
+.snake-col-1{
+  box-sizing: border-box;
+  width: 4.16666667%;
+}
+.snake-col-2{
+  box-sizing: border-box;
+  width: 8.33333333%;
+}
+.snake-col-3{
+  box-sizing: border-box;
+  width: 12.5%;
+}
+.snake-col-4{
+  box-sizing: border-box;
+  width: 16.66666667%;
+}
+.snake-col-5{
+  box-sizing: border-box;
+  width: 20.83333333%;
+}
+.snake-col-6{
+  box-sizing: border-box;
+  width: 25%;
+}
+.snake-col-7{
+  box-sizing: border-box;
+  width: 29.16666667%;
+}
+.snake-col-8{
+  box-sizing: border-box;
+  width: 33.33333333%;
+}
+.snake-col-9{
+  box-sizing: border-box;
+  width: 37.5%;
+}
+.snake-col-10{
+  box-sizing: border-box;
+  width: 41.66666667%;
+}
+.snake-col-11{
+  box-sizing: border-box;
+  width: 45.83333333%;
+}
+.snake-col-12{
+  box-sizing: border-box;
+  width: 50%;
+}
+
+.snake-col-13{
+  box-sizing: border-box;
+  width: 54.16666667%;
+}
+.snake-col-14{
+  box-sizing: border-box;
+  width: 58.33333333%;
+}
+.snake-col-15{
+  box-sizing: border-box;
+  width: 62.5%;
+}
+.snake-col-16{
+  box-sizing: border-box;
+  width: 66.66666667%;
+}
+.snake-col-17{
+  box-sizing: border-box;
+  width: 70.83333333%;
+}
+.snake-col-18{
+  box-sizing: border-box;
+  width: 75%;
+}
+.snake-col-19{
+  box-sizing: border-box;
+  width: 79.16666667%;
+}
+.snake-col-20{
+  box-sizing: border-box;
+  width: 83.33333333%;
+}
+.snake-col-21{
+  box-sizing: border-box;
+  width: 87.5%;
+}
+.snake-col-22{
+  box-sizing: border-box;
+  width: 91.66666667%
+}
+.snake-col-23{
+  box-sizing: border-box;
+  width: 95.83333333%;
+}
+.snake-col-24{
+  box-sizing: border-box;
+  width: 100%;
+}
