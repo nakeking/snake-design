@@ -26,6 +26,10 @@ interface selectProps {
   placeholder?: string
 }
 
+function isSelect(value: string | string[]) {
+  return value && value.length
+}
+
 const Select = (props: selectProps) => {
   const {
     style: _style,
@@ -42,7 +46,7 @@ const Select = (props: selectProps) => {
   let [hidden, setHidden] = useState(true);
   let [style, setStyle] = useState<React.CSSProperties>({});
   let [option_data, setOptions] = useState<optionItem[]>(options || []);
-  let [value, setValue] = useState<string[] | string>('')
+  let [value, setValue] = useState<string[] | string>(mode ? [] : '')
   const SelectRef = useRef<HTMLDivElement>(null)
 
   const classes = classNames('snake-select-wrap', {
@@ -69,8 +73,15 @@ const Select = (props: selectProps) => {
     setHidden(true)
   }
 
-  const handleSelect = (data: string) => {
-    mode ? setValue([...value as string[], data]) : setValue(data)
+  const handleSelect = (data: string | string[]) => {
+    setValue(data)
+  }
+
+  const closeTag = (index: number) => {
+    let base = JSON.parse(JSON.stringify(value as string[]));
+
+    base.splice(index, 1);
+    setValue(base);
   }
 
   return (
@@ -82,22 +93,30 @@ const Select = (props: selectProps) => {
       onClick={handleClick}  
       onBlur={handleBlur}>
       <div className="snake-select-selector">
-        <div className="snake-select-selection-search">
+        {showSearch ? <div className="snake-select-selection-search">
           <Input style={{
             opacity: showSearch ? 1 : 0
           }} disabled={disabled} />
-        </div>
-        <div className="snake-select-selection-item">
-          {mode ? <div className=""></div> : value}
-        </div>
-        {placeholder && !value ? <div className="snake-select-selection-placeholder">{placeholder}</div> : null}
+        </div> : null}
+        {mode ? <div className="snake-select-selection-overflow">
+          {(value as string[]).map((item, index) => {
+            return <div className="snake-select-selection-overflow-item" key={item}>
+              <Tag closable={true} onClose={() => closeTag(index) }>{item}</Tag>
+            </div>
+          })}
+        </div> : <div className="snake-select-selection-item">
+          {value}
+        </div>}
+        {placeholder && !isSelect(value) ? <div className="snake-select-selection-placeholder">{placeholder}</div> : null}
         {loading ? <Icon type="loading" /> : <Icon type="down" />}
       </div>
       {options && RenderSelect({
         id: onlyId,
         hidden,
         options: option_data,
+        value, 
         style,
+        mode,
         handleSelect
       })}
     </div>
@@ -105,13 +124,15 @@ const Select = (props: selectProps) => {
 }
 
 class renderSelectProps {
+  mode?: modeType
   inputRef?: React.MutableRefObject<HTMLInputElement | null>
   id?: string
   options: optionItem[]
+  value?: string | string[]
   hidden: true | false
   style?: React.CSSProperties
-  onSelect?: (data?: optionItem) => void
-  handleSelect?: (value: string) => void
+  handleSelect?: (value: string | string[]) => void
+  onSelect?: (data?: string) => void
 
   constructor() {
     this.options = []
@@ -121,8 +142,10 @@ class renderSelectProps {
 
 export const RenderSelect = (props: renderSelectProps) => {
   const { 
+    mode,
     inputRef,
     id, 
+    value,
     options, 
     hidden,
     style: _style,
@@ -172,12 +195,28 @@ export const RenderSelect = (props: renderSelectProps) => {
   }, false)
 
   /**选择事件 */
-  const [select, setSelect] = useState<optionItem>()
-  const handleClick = (data: optionItem) => {
-    setSelect(data);
+  const [select, setSelect] = useState<string | string[]>(value || '')
+  useEffect(() => {
+    setSelect(value || '')
+  }, [value])
+
+  const handleClick = (data: string, status: boolean) => {
+    if(status) {
+      setSelect(mode ? [...select as string[], data] : [data]);
     
-    onSelect && onSelect(data)
-    handleSelect && handleSelect(data.value);
+      let result = mode ? [...select as string[], data].map(item => item) : data
+      handleSelect && handleSelect(result);
+
+      onSelect && onSelect(data)
+    }else{
+      setSelect(mode ? (select as string[]).filter(item => item !== data) : []);
+
+      let result = mode ? (select as string[]).filter(item => item !== data).map(item => item) : ''
+      handleSelect && handleSelect(result);
+
+      onSelect && onSelect(data)
+    }
+    
   }
 
   return ReactDOM.createPortal(
@@ -189,12 +228,13 @@ export const RenderSelect = (props: renderSelectProps) => {
           className={classes} 
           style={_style} id={id} >
           {options?.map((item, index) => {
+            let active = mode ? (select as string[]).some(sitem => sitem == item.value) : select[0] === item.label
             return (
               <Option 
                 key={item.label}
-                active={select?.label === item.label} 
+                active={active} 
                 value={item.value} 
-                onSelect={() => handleClick(item)}>
+                onSelect={() => handleClick(item.value, !active)}>
                 {item.value}
               </Option>
             );

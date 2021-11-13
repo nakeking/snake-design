@@ -27,7 +27,7 @@ function App() {
     ]);
   }
 
-  const selectOption = (data?: optionItem) => {
+  const selectOption = (data?: string) => {
     console.log(data)
   }
 
@@ -120,7 +120,21 @@ function App() {
             <Select 
               mode={'multiple'}
               placeholder="请选择" 
-              style={{width: '150px'}}></Select>
+              style={{width: '180px'}} 
+              options={[
+                {
+                  label: '1',
+                  value: '1'
+                },
+                {
+                  label: '2',
+                  value: '2'
+                },
+                {
+                  label: '3',
+                  value: '3'
+                }
+              ]}></Select>
           </Col>
         </Row>
       </div>

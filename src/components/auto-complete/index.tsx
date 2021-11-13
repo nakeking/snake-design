@@ -13,7 +13,7 @@ type optionItem = {label: string, value: string};
 export interface AutoCompleteProps extends Omit<inputBaseProps, 'onSelect'> {
   allowClear?: boolean
   options?: optionItem[]
-  onSelect?: (data?: optionItem) => void
+  onSelect?: (data?: string) => void
   onSearch?: (value: string) => void
   value?: string
   placeholder?: string,
@@ -81,8 +81,8 @@ const AutoComplete = ({ ...props }: AutoCompleteProps) => {
     }
   }
 
-  const handleSelect = (value: string) => {
-    setValue(value)
+  const handleSelect = (value: string | string[]) => {
+    setValue(value as string)
   }
 
   return (

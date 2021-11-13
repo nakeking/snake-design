@@ -7,7 +7,8 @@ interface tagProps {
   closable?: boolean
   color?: string
   icon?: React.ReactNode
-  children?: React.ReactNode
+  children?: React.ReactNode,
+  onClose?: () => void
 }
 
 function isPresetColor(color?: string) {
@@ -18,7 +19,8 @@ const Tag: React.FC<tagProps> = (props) => {
   const {
     color,
     closable,
-    children
+    children,
+    onClose
   } = props;
 
   const classes = classNames('snake-tag', {
@@ -29,10 +31,16 @@ const Tag: React.FC<tagProps> = (props) => {
     backgroundColor: color
   } : {};
 
+  const handleClose = (evt: React.MouseEvent) => {
+    evt.stopPropagation()
+
+    onClose && onClose()
+  }
+
   return (
     <span className={classes} style={style}>
       {children}
-      {closable ? <Icon className="snake-tag-close-icon" type="close"></Icon> : null}
+      {closable ? <Icon className="snake-tag-close-icon" type="close" onClick={handleClose}></Icon> : null}
     </span>
   )
 }

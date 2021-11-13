@@ -1,10 +1,11 @@
 import classNames from "classnames";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { Icon } from "../..";
 
 export type optionItem = {label: string, value: string};
 
 interface OptionProps {
-  active?: boolean,
+  active: boolean,
   value: string,
   onSelect?: (data: string) => void
 }
@@ -32,6 +33,7 @@ const Option: React.FC<OptionProps> = (props) => {
       className={classes} 
       onClick={(evt) => handleClick(evt, value)}>
       {children}
+      {active ? <Icon type="check"></Icon> : null}
     </div>
   )
 }

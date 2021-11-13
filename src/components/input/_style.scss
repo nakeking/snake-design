@@ -1,4 +1,8 @@
 .snake-input-wrapper{
+  &.snake-input-focused{
+    border: $border-blue;
+    outline: $border-ouline
+  }
   .snake-input{
     display: inline-block;
     list-style: none;
