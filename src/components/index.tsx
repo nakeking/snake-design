@@ -5,7 +5,7 @@ export { default as Divider } from './divider'
 
 export { default as Input } from './input'
 
-export { default as Icon } from './icon'
+export { default as Icon } from './Icon'
 
 export { Row, Col } from './grid'
 

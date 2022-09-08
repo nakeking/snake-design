@@ -1,14 +1,4 @@
-/*
- * @Author: 
- * @Date: 2022-01-14 10:40:31
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-08-31 18:02:22
- * @FilePath: \snake-design\src\App.tsx
- * @Description: 
- * 
- * Copyright (c) 2022 by 用户/公司名, All Rights Reserved. 
- */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { 
   AutoComplete, 
@@ -57,12 +47,18 @@ function App() {
   }
   // ==============================================================
 
+  interface cascaderOptions {
+    label?: string
+    value?: string
+    leaf?: boolean
+    children?: Array<cascaderOptions>
+  }
   // ====================== Cascader ==============================
-  const [options, setOptions] = useState([]);
+  const [cascaderOptions, setCascaderOptions] = useState<Array<cascaderOptions>>([]);
   const [field_options, setFieldOptions] = useState([]);
 
   useEffect(() => {
-    setOptions([
+    setCascaderOptions([
       {
         label: "肉类",
         value: "10001",
@@ -219,7 +215,7 @@ function App() {
   };
 
   const changeOptions = () => {
-    setOptions([
+    setCascaderOptions([
       {
         label: "肉类",
         value: "10001",
@@ -400,7 +396,7 @@ function App() {
       <div className="base-info">
         <div style={{ width: 240, marginRight: 20 }}>
           <Cascader
-            options={options}
+            options={cascaderOptions}
             showSearch={true}
             onChange={onChange}
             placeholder="请选择"
@@ -409,7 +405,7 @@ function App() {
 
         <div style={{ width: 240, marginRight: 20 }}>
           <Cascader
-            options={options}
+            options={cascaderOptions}
             showSearch={{
               filter,
             }}
