@@ -1,0 +1,41 @@
+.snake-input-wrapper{
+  &.snake-input-focused{
+    border: $border-blue;
+    outline: $border-ouline
+  }
+  .snake-input{
+    display: inline-block;
+    list-style: none;
+    color: #000000d9;
+    width: 100%;
+    transition: all .3s;
+    background-color: none;
+    background-image: none;
+    line-height: 1.5715;
+    outline: none;
+    border: none;
+    padding: 0;
+  }
+  .snake-input-suffix{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    .anticon{
+      margin-left: 4px;
+    }
+    
+  }
+  input{
+    box-sizing: border;
+    color: rgba(0,0,0,0.65);
+    padding: 4px 11px;
+    display: inline-block;
+    &::-webkit-input-placeholder {
+      color: rgb(177, 177, 177)
+    }
+  }
+  input:disabled{
+    cursor: not-allowed;
+  }
+}

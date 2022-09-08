@@ -1,0 +1,188 @@
+.snake-select-wrap{
+  position: relative;
+  padding: 0;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1.5715;
+  list-style: none;
+  .snake-select-selector{
+    width: 100%;
+    padding: 0 11px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+  .snake-select-selector::after{
+    line-height: 30px;
+    display: inline-block;
+    content: "\a0";
+    visibility: hidden;
+    width: 0;
+  }
+
+  .snake-select-selection-item{
+    position: relative;
+    user-select: none;
+    flex: 1;
+    overflow: hidden;
+    font-weight: 400;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: left;
+
+    line-height: 32px;
+    transition: all 0.3s;
+    padding-right: 18px;
+    height: 100%;
+  }
+  .snake-select-selection-overflow{
+    position: relative;
+    display: flex;
+    flex: auto;
+    flex-wrap: wrap;
+    max-width: 100%;
+    .snake-select-selection-overflow-item{
+      margin-top: 2px;
+      margin-bottom: 2px;
+      .snake-tag{
+        margin-right: 4px;
+      }
+    }
+  }
+  .snake-select-selection-search{
+    position:absolute;
+    top: 0;
+    bottom: 0;
+    right: 11px;
+    left: 11px;
+    text-align: left;
+    .snake-input-wrapper{
+      border: none;
+      padding: 0;
+      height: 100%;
+      background: none;
+    }
+  }
+  .snake-select-selection-placeholder{
+    flex: 1;
+    overflow: hidden;
+    color: $gray-400;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    pointer-events: none;
+
+    position:absolute;
+    top: 50%;
+    right: 11px;
+    left: 11px;
+    transform: translateY(-50%);
+    transition: all 0.3s;
+    text-align: left;
+  }
+  .snake-select-selector > .anticon{
+    position: absolute;
+    top: 50%;
+    right: 11px;
+    margin-top: -10px;
+    line-height: 1;
+    text-align: center;
+  }
+  .snake-input-focused{
+    outline: none;
+  }
+}
+.snake-select-wrap:not(.snake-select-affix-wrapper-disabled).snake-select-focused{
+  border: $border-blue;
+  outline: $border-ouline
+}
+.snake-select-multiple .snake-select-selector{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1px 4px;
+  height: 100%;
+  padding-right: 24px;
+}
+
+.snake-search-select{
+  position: absolute;
+  margin: 0;
+  padding: 4px 0;
+  line-height: 1.5715;
+  list-style: none;
+  box-sizing: border-box;
+  background: $white;
+  border-radius: 2px;
+  box-shadow: $box-shadow;
+  outline: none;
+  font-size: 14px;
+  color: #000000d9;
+  z-index: 999;
+  overflow: hidden;
+  .select-item{
+    position: relative;
+    padding: 5px 12px;
+    line-height: 22px;
+    background: $white;
+    transition: background .3s ease;
+    cursor: pointer;
+    margin-bottom: 4px;
+    &:hover{
+      background: $gray-100;
+    }
+    &.active{
+      background: #c5e5ff;
+    }
+    .anticon{
+      font-size: 14px;
+      position: absolute;
+      right: 9px;
+      top: 9px;
+      color: $blue;
+    }
+  }
+  .select-item:last-child{
+    margin-bottom: 0;
+  }
+}
+.snake-search-select.snake-select-hidden{
+  display: none;
+}
+
+.snake-option-enter{
+  animation: enter .5s;
+  animation-duration: .2s;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(.755,.05,.855,.06);
+}
+
+.snake-option-leave{
+  animation: leave .5s;
+  animation-duration: .2s;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(.755,.05,.855,.06);
+}
+
+@keyframes enter {
+  0%{
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  100%{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes leave {
+  0%{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100%{
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}

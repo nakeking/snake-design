@@ -1,0 +1,41 @@
+.snake-input-wrapper, .snake-select-wrap{
+  display: flex;
+  font-size: 14px;
+  line-height: 1.5715;
+  border: 1px solid $gray-300;
+  border-radius: 0;
+  transition: all 0.5s;
+  padding: 4px 11px;
+  &:hover{
+    border: $border-blue;
+  }
+  .anticon{
+    font-size: $font-size-base;
+    color: $gray-600;
+
+    &:hover{
+      color: $gray-800;
+    }
+  }
+}
+
+.snake-input-wrapper.snake-input-affix-wrapper-disabled, 
+.snake-select-wrap.snake-select-affix-wrapper-disabled{
+  border-color: $gray-300;
+  background-color: $gray-100;
+  cursor: not-allowed;
+  .snake-select-selector{
+    outline: none;
+    background: 0 0;
+    cursor: not-allowed;
+  }
+  .anticon{
+    cursor: not-allowed;
+  }
+  input{
+    cursor: not-allowed;
+    outline: none;
+  }
+}
+
+
