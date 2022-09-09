@@ -50,7 +50,7 @@ const SubCascader = React.forwardRef(
     } = props;
 
     const context = useContext(CascaderContext);
-    if (!context) return;
+    // if (!context) return;
     const { options, fieldNames } = context;
 
     const {
@@ -354,7 +354,7 @@ const SubCascader = React.forwardRef(
 
                     {!item.leaf ? (
                       <div className="v-cascader-menu-item-icon">
-                        <Icon icon="angle-right" />
+                        <Icon type="angle-right" />
                       </div>
                     ) : null}
                   </li>

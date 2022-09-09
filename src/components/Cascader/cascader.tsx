@@ -55,7 +55,7 @@ export interface searchType {
 export interface CascaderProps {
   laster?: boolean;
   allowClear?: boolean;
-  defaultValue?: Array<string | number>;
+  defaultValue?: Array<string | number> | [];
   disabled?: boolean;
   options: Array<optionType>;
   fieldNames?: fieldNamesType;
@@ -129,11 +129,11 @@ const Cascader: FC<CascaderProps> = (p) => {
 
     let resizeObserver = new ResizeObserver((entries) => {
       entries.forEach((entry) => {
-        const { offsetTop, offsetLeft, clientHeight } = entry.target;
+        const { offsetTop, offsetLeft, offsetParent, clientHeight } = entry.target;
 
         setStyle({
           left: offsetLeft,
-          top: offsetTop + clientHeight + 4,
+          top: offsetTop + offsetParent.offsetTop + clientHeight + 4,
         });
       });
     });
@@ -270,11 +270,11 @@ const Cascader: FC<CascaderProps> = (p) => {
         </div>
 
         <span className="v-cascader-icon down">
-          <Icon icon="angle-right" />
+          <Icon type="down" />
         </span>
 
         <span className="v-cascader-icon clear" onClick={handleClear}>
-          <Icon icon="window-close" />
+          <Icon type="close" />
         </span>
 
         <SubCascader

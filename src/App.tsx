@@ -214,61 +214,9 @@ function App() {
     );
   };
 
-  const changeOptions = () => {
-    setCascaderOptions([
-      {
-        label: "肉类",
-        value: "10001",
-        leaf: false,
-        children: [
-          {
-            label: "牛肉",
-            value: "10002",
-            leaf: false,
-            children: [
-              {
-                label: "牛头",
-                value: "10003",
-                leaf: true,
-              },
-              {
-                label: "牛腿",
-                value: "10004",
-                leaf: true,
-              },
-              {
-                label: "牛B",
-                value: "10005",
-                leaf: true,
-              },
-            ],
-          },
-          {
-            label: "猪肉",
-            value: "10006",
-            leaf: false,
-            children: [
-              {
-                label: "🐖头",
-                value: "10007",
-                leaf: true,
-              },
-              {
-                label: "🐖腿",
-                value: "10008",
-                leaf: true,
-              },
-            ],
-          },
-        ],
-      },
-    ]);
-  };
-
   const loadData = (selectedOptions) => {};
 
   // ==============================================================
-
 
   return (
     <div className="App">
@@ -394,40 +342,39 @@ function App() {
       </div>
 
       <div className="base-info">
-        <div style={{ width: 240, marginRight: 20 }}>
-          <Cascader
-            options={cascaderOptions}
-            showSearch={true}
-            onChange={onChange}
-            placeholder="请选择"
-          />
-        </div>
-
-        <div style={{ width: 240, marginRight: 20 }}>
-          <Cascader
-            options={cascaderOptions}
-            showSearch={{
-              filter,
-            }}
-            onChange={onChange}
-            placeholder="请选择"
-          />
-        </div>
-
-        <div style={{ width: 240, marginRight: 20 }}>
-          <Cascader
-            options={field_options}
-            fieldNames={{
-              label: "name",
-              value: "id",
-            }}
-            loadData={loadData}
-            onChange={onChange}
-            placeholder="请选择"
-          />
-        </div>
-
-        <button onClick={changeOptions}>点击</button>
+        <Divider message="Cascader"></Divider>
+        <Row gutter={24}>
+          <Col span={4}>
+            <Cascader
+              options={cascaderOptions}
+              showSearch={true}
+              onChange={onChange}
+              placeholder="请选择"
+            />
+          </Col>
+          <Col span={4}>
+            <Cascader
+              options={cascaderOptions}
+              showSearch={{
+                filter,
+              }}
+              onChange={onChange}
+              placeholder="请选择"
+            />
+          </Col>
+          <Col span={4}>
+            <Cascader
+              options={field_options}
+              fieldNames={{
+                label: "name",
+                value: "id",
+              }}
+              loadData={loadData}
+              onChange={onChange}
+              placeholder="请选择"
+            />
+          </Col>
+        </Row>
       </div>
     </div>
   );

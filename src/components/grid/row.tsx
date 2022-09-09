@@ -18,20 +18,9 @@ const Row: React.FC<rowProps> = (props) => {
     'snake-row-gutter': gutter && gutter[1] > 0
   })
 
-  const rowStyle = {
-    ...(gutter[0] ? {
-      marginLeft: gutter[0] / -2,
-      marginRight: gutter[0] / -2
-    } : {}),
-    ...(gutter[1] ? {
-      marginTop: gutter[1] / -2,
-      marginBottom: gutter[1] / -2
-    } : {})
-  }
-
   return (
     <RowContext.Provider value={{ gutter }}>
-      <div className={classes} style={rowStyle}>
+      <div className={classes} >
         {children}
       </div>
     </RowContext.Provider>

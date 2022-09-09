@@ -1,7 +1,6 @@
 .snake-row{
   position: relative;
   display: block;
-  zoom: 1;
   box-sizing: border-box;
   &::before,&::after{
     display: table;
@@ -20,7 +19,6 @@
   min-height: 30px;
   margin-top: 8px;
   margin-bottom: 8px;
-  text-align: center;
   box-sizing: border-box;
 }
 
