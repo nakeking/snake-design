@@ -103,7 +103,7 @@ const Cascader: FC<CascaderProps> = (p) => {
     [mergedOptions, fieldNames, changeOnSelect]
   );
   // ==============================================================
-
+  
   const [_style, setStyle] = useState<React.CSSProperties>({});
   const [content, setContent] = useState<string>("");
   const [search_str, setSearchStr] = useState<string>("");
@@ -123,6 +123,7 @@ const Cascader: FC<CascaderProps> = (p) => {
   }, [cascaderRef, menuRef.current?.returnRef()]);
 
   useMount(() => {
+    console.log(123)
     if (defaultValue) {
       initDefaultValue();
     }

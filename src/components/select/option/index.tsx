@@ -4,7 +4,7 @@ import { Icon } from "../..";
 
 export type optionItem = {label: string, value: string};
 
-interface OptionProps {
+export interface OptionProps {
   active: boolean,
   value: string,
   onSelect?: (data: string) => void

@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import { useUpdateLayoutEffect } from '../_util/hooks/useUpdateLayoutEffect';
 
 import Input from '../input'
-import Option, { optionItem } from './option'
+import Option, { optionItem, OptionProps } from './option'
 import Tag from '../tag'
 import { Icon } from '..'
 
@@ -30,11 +30,12 @@ function isSelect(value: string | string[]) {
   return value && value.length
 }
 
-const Select = (props: selectProps) => {
+const Select: React.FC<selectProps> & {
+  Option: React.FC<OptionProps>
+} = (props: selectProps) => {
   const {
     style: _style,
     placeholder,
-    allowClear,
     showSearch,
     loading,
     mode,

@@ -214,8 +214,6 @@ function App() {
     );
   };
 
-  const loadData = (selectedOptions) => {};
-
   // ==============================================================
 
   return (
@@ -369,7 +367,6 @@ function App() {
                 label: "name",
                 value: "id",
               }}
-              loadData={loadData}
               onChange={onChange}
               placeholder="请选择"
             />

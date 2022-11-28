@@ -1,7 +1,25 @@
 {
   "name": "snake-design",
   "version": "0.1.0",
-  "private": true,
+  "description": "React component",
+  "author": "nakeking",
+  "homepage": "https://github.com/nakeking/snake-design",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nakeking/snake-design"
+  },
+  "license": "MIT",
+  "keywords": [
+    "ui",
+    "react",
+    "component"
+  ],
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "type": "dist/index.d.ts",
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -100,9 +118,19 @@
     "workbox-webpack-plugin": "5.1.4"
   },
   "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "start": "react-scripts start",
+    "build": "npm run build-ts && npm run build-css",
+    "test": "react-scripts test",
+    "test:nowatch": "cross-env CI=true react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint --ext js,ts,tsx src --max-warnings 10",
+    "lint_fix": "eslint '{components,example}/**/*.{ts,tsx,js,jsx}' --fix",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public",
+    "build-ts": "tsc -p tsconfig.build.json",
+    "build-css": "node-sass ./src/styles/index.scss ./dist/index.css",
+    "prepublishOnly": "npm run test:nowatch && npm run lint && npm run build",
+    "origin-pub": "sh release.sh"
   },
   "eslintConfig": {
     "extends": [
@@ -178,8 +206,5 @@
     "presets": [
       "react-app"
     ]
-  },
-  "main": "index.js",
-  "author": "1287414150@qq.com <1287414150@qq.com>",
-  "license": "MIT"
+  }
 }
