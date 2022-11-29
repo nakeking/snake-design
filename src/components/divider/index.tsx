@@ -1,7 +1,7 @@
 import React from 'react'
 import classNames from "classnames";
 
-import './_style.scss'
+// import './_style.scss'
 
 interface dividerProps {
   message?: string
