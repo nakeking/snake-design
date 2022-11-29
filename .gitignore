@@ -5,6 +5,8 @@
 /config
 /.pnp
 pnp.js
+/dist
+/config
 
 # testing
 ./coverage
