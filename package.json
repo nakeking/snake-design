@@ -17,6 +17,7 @@
   "files": [
     "dist"
   ],
+  "private": false,
   "main": "dist/index.js",
   "module": "dist/index.js",
   "type": "dist/index.d.ts",
@@ -201,10 +202,5 @@
       "jest-watch-typeahead/testname"
     ],
     "resetMocks": true
-  },
-  "babel": {
-    "presets": [
-      "react-app"
-    ]
   }
 }
